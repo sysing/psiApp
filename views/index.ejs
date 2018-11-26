@@ -1,0 +1,108 @@
+<% include partials/header %>
+
+<h1><%= title %></h1>
+<form method="POST" action = 'request/add'>
+    <p>Date: <input type="text" id="datepicker" name="datepicker" autocomplete="off"></p>
+    <input type="submit" value="Submit">
+</form>
+<br>
+<div class = 'InfoRow'>
+    <div class = 'InfoRowElement'>
+        <table id="table-guide">
+            <thead>
+                <tr>
+                    <th>PSI Value</th>
+                    <th>Air Quality Descriptor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="color: #479b02; font-weight: bold">0 - 50</td>
+                    <td style="color: #479b02; font-weight: bold">Good</td>
+                </tr>
+                <tr>
+                    <td style="color: #006fa1; font-weight: bold">51 - 100</td>
+                    <td style="color: #006fa1; font-weight: bold">Moderate</td>
+                </tr>
+                <tr>
+                    <td style="color: #FFCE03; font-weight: bold">101 - 200</td>
+                    <td style="color: #FFCE03; font-weight: bold">Unhealthy</td>
+                </tr>
+                <tr>
+                    <td style="color: #FFA800; font-weight: bold">201 - 300</td>
+                    <td style="color: #FFA800; font-weight: bold">Very unhealthy</td>
+                </tr>
+                <tr>
+                    <td style="color: #d60000; font-weight: bold">Above 300</td>
+                    <td style="color: #d60000; font-weight: bold">Hazardous</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class = 'InfoRowElement'>
+        Lastest Central PSI:<div class='CurPsi'><%= current_psi_value %></div> <br> updated on  <%= current_psi_timestamp %> 
+    </div>
+</div>
+<% if (errors != undefined) { %>
+    <ul>
+        <% errors.forEach(function(error){ %>
+        <li>
+            <%= error.msg %>
+        </li>
+        <% }) %>
+    </ul>
+<% } %>
+    <!-- <% if (body != undefined && body.items.length > 0 ) { %>
+        <ul>
+            <% body.items.forEach(function(item){ %>
+                <li>
+                    <%= item.timestamp %>
+                    <%= item.readings.psi_twenty_four_hourly.central %>
+                </li>
+            <% }) %>
+        </ul>
+    <% } %> -->
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+<div>
+    <canvas id="myChart" width="400" height="400"></canvas>
+    <script>
+        console.log(xLabel);
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var xLabel = <%-JSON.stringify(xLabel) %>;
+        var yLabel = <%-JSON.stringify(yLabel) %>;
+        var backgroundColor = <%-JSON.stringify(backgroundColor) %>;
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels:  xLabel,
+                datasets: [{
+                    label: 'PSI',
+                    data: yLabel,
+                    backgroundColor: backgroundColor,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                responsive: false,
+                maintainAspectRatio: false,
+            },
+        });
+    </script>
+</div>
+    
+<% include partials/footer %>

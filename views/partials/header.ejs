@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title> <%=title%></title>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+        <script src="js/main.js"></script>
+        <link rel="stylesheet"  type="text/css" href="css/main.css" />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+        <script>
+        $(function () {
+            $("#datepicker").datepicker();
+            $("#datepicker").datepicker("option", "dateFormat", "yy-mm-dd");
+        });
+        </script>
+    </head>
+    <body>

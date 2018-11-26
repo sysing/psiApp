@@ -1,0 +1,16 @@
+table, th, td  {
+    text-align: center;
+    margin: 5px 0px 5px 0px;
+}
+table{
+    border: 1px solid black;
+}
+.CurPsi{
+    font-size: 30px;
+    justify-content: center;
+}
+.InfoRowElement{
+    float:left;
+    font-size:30px;
+    margin-left: 50px;
+}
